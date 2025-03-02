@@ -13,9 +13,9 @@ import teststeps.APITestSteps;
 
 public class SortingPaginationTest extends BaseClass
 {
-	@Test(description = "TC_008: Validate sorting by market cap in ascending order", priority = 1)
+    @Test(description = "TC_008: Validate sorting by market cap in ascending order", priority = 1)
     public void verifyMarketCapSortingAscending() 
-	{
+    {
         Response response = APITestSteps.getResponseForMarketCapSorting(javaUtils.propertyData("endpoint"), "usd", "market_cap_asc");
         
         List<Map<String, Object>> jsonResponse = APITestSteps.getAllCryptoData(response);
@@ -43,7 +43,8 @@ public class SortingPaginationTest extends BaseClass
     }
     
     @Test(description = "TC_010: Validate Page 1 and Page 2 doesn't have duplicate data", priority = 3)
-    public void verifyPaginationNoDuplicates() {
+    public void verifyPaginationNoDuplicates() 
+    {
         Response page1Data = APITestSteps.getPaginatedResponse(javaUtils.propertyData("endpoint"), "usd", 100, 1);
 
         Response page2Data = APITestSteps.getPaginatedResponse(javaUtils.propertyData("endpoint"), "usd", 100, 2);
@@ -57,7 +58,8 @@ public class SortingPaginationTest extends BaseClass
     }
     
     @Test(description = "TC_011: Validate Requesting a very high page number returns an empty response or valid error", priority = 4)
-    public void verifyHighPageNumber() {
+    public void verifyHighPageNumber() 
+    {
         Response response = APITestSteps.getPaginatedResponse(javaUtils.propertyData("endpoint"), "usd", 100, 1000);
         
         Object jsonResponse = response.jsonPath().get("$");
