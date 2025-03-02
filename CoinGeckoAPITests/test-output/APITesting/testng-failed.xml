@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="Failed suite [APITesting]" guice-stage="DEVELOPMENT">
+  <test thread-count="5" name="APITest(failed)">
+    <classes>
+      <class name="testscripts.FilteringTest">
+        <methods>
+          <include name="verifyCurrencyFiltering"/>
+          <include name="verifyIdFiltering"/>
+          <include name="tearDownExtent"/>
+          <include name="verifyInvalidCoinId"/>
+          <include name="setUp"/>
+          <include name="verifyMarketCapSortingDescending"/>
+          <include name="tearDown"/>
+          <include name="setupExtent"/>
+        </methods>
+      </class> <!-- testscripts.FilteringTest -->
+      <class name="testscripts.CurrenyDataValidationTest">
+        <methods>
+          <include name="verifyResponseContainsEssentialFields"/>
+          <include name="tearDownExtent"/>
+          <include name="setUp"/>
+          <include name="setupExtent"/>
+          <include name="tearDown"/>
+          <include name="verifyDataIsUpdatedWithinLast60Seconds"/>
+        </methods>
+      </class> <!-- testscripts.CurrenyDataValidationTest -->
+      <class name="testscripts.SortingPaginationFilteringTest">
+        <methods>
+          <include name="verifyPagination"/>
+          <include name="verifyMarketCapSortingAscending"/>
+          <include name="tearDownExtent"/>
+          <include name="setUp"/>
+          <include name="tearDown"/>
+          <include name="setupExtent"/>
+          <include name="verifyPaginationNoDuplicates"/>
+          <include name="verifyHighPageNumber"/>
+        </methods>
+      </class> <!-- testscripts.SortingPaginationFilteringTest -->
+      <class name="testscripts.SecurityTest">
+        <methods>
+          <include name="verifySQLInjectionProtection"/>
+          <include name="tearDownExtent"/>
+          <include name="verifyInvalidParametersHandling"/>
+          <include name="setUp"/>
+          <include name="setupExtent"/>
+          <include name="tearDown"/>
+        </methods>
+      </class> <!-- testscripts.SecurityTest -->
+      <class name="testscripts.RateLimitingAndPerformanceTest">
+        <methods>
+          <include name="verifyNoRateLimiting"/>
+          <include name="tearDownExtent"/>
+          <include name="setUp"/>
+          <include name="setupExtent"/>
+          <include name="tearDown"/>
+        </methods>
+      </class> <!-- testscripts.RateLimitingAndPerformanceTest -->
+    </classes>
+  </test> <!-- APITest(failed) -->
+</suite> <!-- Failed suite [APITesting] -->

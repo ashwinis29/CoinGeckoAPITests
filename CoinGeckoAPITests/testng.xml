@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="APITesting">
+  <test thread-count="5" name="APITest">
+    <classes>
+      <class name="testscripts.RateLimitingAndPerformanceTest"/>
+      <class name="testscripts.FilteringTest"/>
+      <class name="testscripts.StatusCodeAndFormatTest"/>
+      <class name="testscripts.CurrenyDataValidationTest"/>
+      <class name="com.coingecko.genericutility.BaseClass"/>
+      <class name="testscripts.SortingPaginationTest"/>
+      <class name="testscripts.SecurityTest"/>
+    </classes>
+  </test> <!-- APITest -->
+</suite> <!-- APITesting -->
