@@ -1,1 +1,1 @@
-This repository contains the CoinGeckoAPITests Maven project, which includes test scripts, execution reports (Extent Reports and TestNG reports), a test plan, test cases for API testing in Postman as well as for automation scripts in Java, and a Postman API testing zip folder.
+This repository contains the CoinGeckoAPITests Maven project, which includes test scripts, execution reports (Extent Reports and TestNG reports), a test plan, test cases for API testing in Postman as well as automated test scripts in Java, and a Postman API testing zip folder.
