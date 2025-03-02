@@ -17,13 +17,13 @@ import teststeps.APITestSteps;
 
 public class FilteringTest extends BaseClass
 {
-	@Test(description = "TC_012: Validate Response contains only requested coins (bitcoin, ethereum)", priority = 1)
-    public void verifyIdFiltering() {
+    @Test(description = "TC_012: Validate Response contains only requested coins (bitcoin, ethereum)", priority = 1)
+    public void verifyIdFiltering()
+    {
     	Response response =  APITestSteps.getResponseForFilteredCoins(javaUtils.propertyData("endpoint"), "usd", "bitcoin,ethereum");
 
         List<String> coinIds = APITestSteps.getCoinIds(response);
 
-        
         Assert.assertTrue(coinIds.containsAll(Arrays.asList("bitcoin", "ethereum")), "Response does not contain both Bitcoin and Ethereum!");
         Assert.assertEquals(coinIds.size(), 2, "Response contains extra coins!");
         test.pass("Response contains only requested coins");
@@ -67,7 +67,8 @@ public class FilteringTest extends BaseClass
     }
 
     @Test(description = "TC_015: Validate Invalid coin ID returns an empty response", priority = 4)
-    public void verifyInvalidCoinId() {
+    public void verifyInvalidCoinId() 
+    {
     	Response response = APITestSteps.getResponseForFilteredCoins(javaUtils.propertyData("endpoint"), "usd", "invalid_coin_id");
 
         Object jsonResponse = response.jsonPath().get("$");
