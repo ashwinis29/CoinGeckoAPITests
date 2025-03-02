@@ -12,7 +12,7 @@ import teststeps.APITestSteps;
 
 public class RateLimitingAndPerformanceTest extends BaseClass
 {
-	//Rate Limiting 
+    //Rate Limiting 
     @Test(description = "TC_016: Validate API doesn't return 429 Too Many Requests", priority = 1)
     public void verifyNoRateLimiting() 
     {
@@ -32,9 +32,11 @@ public class RateLimitingAndPerformanceTest extends BaseClass
         test.pass("Handled rate limiting (Retry if 429 Too Many Requests received)");
         test.info("API response time: " + response.getTime() + "ms");
     }
-    
+
+    //Performance Test
     @Test(description = "TC_018: Response time should be less than 400ms", priority = 3)
-    public void verifyResponseTime() {
+    public void verifyResponseTime() 
+    {
         long responseTime = given()
                                 .queryParam("vs_currency", "usd")
                                 .when()
