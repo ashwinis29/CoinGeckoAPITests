@@ -13,10 +13,10 @@ import teststeps.APITestSteps;
 
 public class CurrenyDataValidationTest extends BaseClass
 {
-	@Test(description = "TC_003: Validate at least one cryptocurrency is returned", priority = 1)
-    public void verifyAtLeastOneCryptoIsReturned() 
-	{
-		Response response = APITestSteps.getResponseForCurrency(javaUtils.propertyData("endpoint"), "usd");
+   @Test(description = "TC_003: Validate at least one cryptocurrency is returned", priority = 1)
+   public void verifyAtLeastOneCryptoIsReturned() 
+   {
+	Response response = APITestSteps.getResponseForCurrency(javaUtils.propertyData("endpoint"), "usd");
 
         List<Map<String, Object>> jsonResponse = response.jsonPath().getList("$");
         Assert.assertTrue(jsonResponse.size() > 0, "No cryptocurrencies returned!");
@@ -42,14 +42,14 @@ public class CurrenyDataValidationTest extends BaseClass
     	Response response = APITestSteps.getResponseForCurrency(javaUtils.propertyData("endpoint"), "usd");
 
     	Map<String,Object> bitcoin = APITestSteps.getBitcoinData(response);
-		Assert.assertNotNull(bitcoin, "Bitcoin data not found!");
+	Assert.assertNotNull(bitcoin, "Bitcoin data not found!");
 		
         boolean isValid = APITestSteps.isBitcoinPriceValid(bitcoin);
         
-		Assert.assertTrue(isValid, "Bitcoin price is not a valid number or not greater than zero!");
+	Assert.assertTrue(isValid, "Bitcoin price is not a valid number or not greater than zero!");
 		
-		test.pass(isValid ? "Bitcoin price is a valid number" : "Bitcoin price is not a valid number");
-		test.info("API response time: " + response.getTime() + "ms");
+	test.pass(isValid ? "Bitcoin price is a valid number" : "Bitcoin price is not a valid number");
+	test.info("API response time: " + response.getTime() + "ms");
     }
     
     @Test(description = "TC_006: Validate Data Updation Within The Last 60 Seconds", priority = 4)
