@@ -13,11 +13,11 @@ import teststeps.APITestSteps;
 
 public class SecurityTest extends BaseClass
 {
-	@Test(description = "TC_019: Validate API is not be vulnerable to SQL Injection", priority = 1)
+    @Test(description = "TC_019: Validate API is not be vulnerable to SQL Injection", priority = 1)
     public void verifySQLInjectionProtection() 
-	{
-		//Attempt SQL Injection
-		Response response = APITestSteps.getResponseForFilteredCoins(javaUtils.propertyData("endpoint"), "usd", "bitcoin' OR '1'='1");
+    {
+	//Attempt SQL Injection
+	Response response = APITestSteps.getResponseForFilteredCoins(javaUtils.propertyData("endpoint"), "usd", "bitcoin' OR '1'='1");
 
         int statusCode = response.getStatusCode();
 
