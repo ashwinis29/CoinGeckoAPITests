@@ -14,12 +14,14 @@ import com.coingecko.genericutility.JavaUtility;
 
 public class APITestSteps 
 {
-	public static JavaUtility javaUtils = new JavaUtility();
-	private static final int MAX_RETRIES = 3;
+    public static JavaUtility javaUtils = new JavaUtility();
+    private static final int MAX_RETRIES = 3;
     private static final int RETRY_DELAY_MS = 5000; // 5seconds
-    
-	public static Response getResponseForCurrency(String endpoint, String currency) {
-		Response response = given()
+
+   //Extract response for currency	
+   public static Response getResponseForCurrency(String endpoint, String currency) 
+   {
+	Response response = given()
                 .queryParam("vs_currency", currency)
                 .when()
                 .get(endpoint)
@@ -27,12 +29,12 @@ public class APITestSteps
                 .extract()
                 .response();
 		
-		return response;
+	return response;
     }
 	
-	public static Map<String,Object> getBitcoinData(Response response)
-	{
-		Object jsonResponse = response.jsonPath().get("$");
+   public static Map<String,Object> getBitcoinData(Response response)
+   {
+	Object jsonResponse = response.jsonPath().get("$");
         Map<String, Object> bitcoin;
 
         if (jsonResponse == null) 
@@ -44,11 +46,11 @@ public class APITestSteps
         					.filter(coin -> "bitcoin".equals(coin.get("id"))).findFirst().orElse(null) 
         					: (Map<String, Object>) jsonResponse ;
         return bitcoin;
-	}
+    }
 	
-	public static boolean isBitcoinPriceValid(Map<String, Object> bitcoinData) 
-	{
-		Object price;
+    public static boolean isBitcoinPriceValid(Map<String, Object> bitcoinData) 
+    {
+	Object price;
 		
         if (bitcoinData == null || !bitcoinData.containsKey("current_price")) 
         {
@@ -59,11 +61,12 @@ public class APITestSteps
         
         return price instanceof Number && ((Number) price).doubleValue() > 0;
     }
-	
-	public static Map<String,Object> getCryptoData(Response response)
-	{
-		Object jsonResponse = response.jsonPath().get("$");
-		if (jsonResponse == null) 
+
+    //Extract response for single record
+    public static Map<String,Object> getCryptoData(Response response)
+    {
+	Object jsonResponse = response.jsonPath().get("$");
+	if (jsonResponse == null) 
         {
             throw new RuntimeException("API response is null");
         }
@@ -71,10 +74,10 @@ public class APITestSteps
         Map<String, Object> cryptoData = (jsonResponse instanceof List) ? ((List<Map<String, Object>>) jsonResponse).get(0) 
         									: (Map<String, Object>) jsonResponse;
         return cryptoData;
-	}
+    }
 	
-	public static Response getResponseForMarketCapSorting(String endpoint, String currency, String order) 
-	{
+    public static Response getResponseForMarketCapSorting(String endpoint, String currency, String order) 
+    {
 		Response response = given()
                 .queryParam("vs_currency", currency)
                 .queryParam("order", order)
@@ -87,10 +90,10 @@ public class APITestSteps
 		return response;
     }
 	
-	public static List<Map<String, Object>> getAllCryptoData(Response response) 
-	{
-		Object jsonResponse = response.jsonPath().get("$");
-	    return (jsonResponse instanceof List) 
+   public static List<Map<String, Object>> getAllCryptoData(Response response) 
+   {
+	Object jsonResponse = response.jsonPath().get("$");
+	return (jsonResponse instanceof List) 
 	            ? (List<Map<String, Object>>) jsonResponse 
 	            : List.of((Map<String, Object>) jsonResponse);
     }
@@ -105,7 +108,8 @@ public class APITestSteps
             Assert.assertTrue(current <= next, key + " is not sorted in ascending order!");
         }
     }
-    
+
+    //Extract response for certain records
     public static Response getPaginatedResponse(String endpoint, String currency, int perPage, int page) 
     {
     	Response response = given()
@@ -120,7 +124,8 @@ public class APITestSteps
     	
     	return response;
     }
-    
+
+    //429 Too Many Requests retry mechanism
     public static Response getResponseWithRetry(String endpoint, String currency) 
     {
         int statusCode = 429;
@@ -148,7 +153,8 @@ public class APITestSteps
         }
         return response;
     }
-    
+
+    //Extract response based on coins
     public static Response getResponseForFilteredCoins(String endpoint, String currency, String coins) 
     {
         Response response =  given()
@@ -163,7 +169,8 @@ public class APITestSteps
         
         return response;
     }
-    
+
+    //Retrieve coin ids
     public static List<String> getCoinIds(Response response) 
     {
         Object jsonResponse = response.jsonPath().get("$");
